@@ -1,0 +1,98 @@
+{
+	// Place your snippets for terraform here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"TerraForm Blocks":{
+		"prefix":"_tf",
+		"body": [
+			"#############################################################################",
+			"# This is intended as a Scaffold for a terraform config file                #",
+			"# Remove any sections that you do not need as required for your configs     #",
+			"#                                                                           #",
+			"# Config Template created for vscode - by Derek Schauland 2018              #",
+			"# Please contribute - share and modify - making things better is helpful    #",
+			"#############################################################################",
+			"#############################################################################",
+			"#Variables - Declare vars here  - Syntax Example included                   #",
+			"#############################################################################",
+			" ",
+			" ",
+			"variable \"key\" {",
+  			"type    = \"string\"",
+  			"default = \"value\"",
+			"}",
+			" ",
+			"# A multiline variable - just in case - comment out if not needed",
+			"variable \"long_key\" {",
+  			"type = \"string\"",
+  			"default = <<EOF",
+			"This is a long key.",
+			"Running over several lines.",
+			"EOF",
+			"}",
+			" ",
+			"#############################################################################",
+			"# Data Sources - Setup Here - syntax example included                       #",
+			"#############################################################################",
+			" ",
+			 "#Find the latest available AMI that is tagged with Component = web",
+			 "data \"aws_ami\" \"web\" {",
+  			 "filter {",
+    		 "name   = \"state\"",
+    		 "values = [",
+						"\"available\"",
+					"]",
+				"}",
+
+  			"filter {",
+    		"name   = \"tag:Component\"",
+   			"values = [",
+						"\"web\"",
+					"]",
+				"}",
+
+ 			"most_recent = true",
+			"}",
+			" ",
+			"#############################################################################",
+			"# Modules - Setup Modules Here - syntax example included                    #",
+			"#############################################################################",
+			" ",
+			" ",
+			"module \"<mod name>\" {",
+			"source = \"hashicorp\\consul\\aws\"",
+			"servers = 5",
+			"}",	
+			" ",
+			"##############################################################################",
+			"# Resources - Setup Resource configurations here   - syntax example included #",
+			"##############################################################################",
+			" ",
+			"resource \"aws_instance\" \"web\" {",
+			"ami           = \"ami-408c7f28\"",
+ 			"instance_type = \"t1.micro\"",
+			"}",
+			" ",
+			"#############################################################################",
+			"# Outputs - Setup Outputs Here - Syntax Example Included                    #",
+			"#############################################################################",
+			" ",
+			"output \"address\" {",
+		    "value = \"${aws_instance.db.public_dns}\"",
+			"}",
+			" ",
+		],
+		"description": "Scaffold your Terraform file into sections with comment blocks"
+	}
+}
